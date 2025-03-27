@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agri-Reborn</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <figure>
+            <img src="https://lorem.cat/100x100" />
+        </figure>
+
+        <h1>Agri-Reborn</h1>
+
+        <?php
+            include ('rrss.php');
+        ?>
+        
+    </header>
+    
+    <main>
+        <section id="juego">
+            <h2 style="display: none;">Panel del juego</h2>
+
+            <!-- Sección 1 Clicar -->
+            <section>
+                <header>
+                <h3 id="cantidad">0</h3>
+                <p>por segundo: <span id="cantPerSec">0</span></p>
+
+                </header>
+                <div id="clica">
+                    <!-- Zona de clicado -->
+                </div>
+
+                <div id="clicMod">
+                    <p>10</p>
+                    <p>0</p>
+                </div>
+
+            </section>
+
+            <!-- Seccion 2 -->
+             <section>
+                <h3>Apartado de modificadores e investigaciones</h3>
+
+                <section>
+                    <h4>Modificadores</h4>
+                    
+                    <div class="mods">
+                        
+                        <div class="invest">
+                            <p>1</p>
+                            <p class="contadorInvestigacion">0</p>
+                        </div>
+    
+                        <div>
+                            <p class="tipoModificador">1</p>
+                            <p class="precio">100</p>
+                            <p class="contadorModificador">0</p>
+                        </div>
+
+                    </div>
+                    <div class="mods">
+                        <p class="tipoModificador">4</p>
+                        <p class="precio">400</p>
+                        <p class="contadorModificador">0</p>
+                    </div>
+                    <div class="mods">
+                        <p class="tipoModificador">16</p>
+                        <p class="precio">1600</p>
+                        <p class="contadorModificador">0</p>
+                    </div>
+                    <div class="mods">
+                        <p class="tipoModificador">64</p>
+                        <p class="precio">6400</p>
+                        <p class="contadorModificador">0</p>
+                    </div>
+                    <div class="mods">
+                        <p class="tipoModificador">256</p>
+                        <p class="precio">25600</p>
+                        <p class="contadorModificador">0</p>
+                    </div>
+                    <div class="mods">
+                        <p class="tipoModificador">1024</p>
+                        <p class="precio">102400</p>
+                        <p class="contadorModificador">0</p>
+                    </div>
+                    <div class="mods">
+                        <p class="tipoModificador">4096</p>
+                        <p class="precio">409600</p>
+                        <p class="contadorModificador">0</p>
+                    </div>
+                    <div class="mods">
+                        <p class="tipoModificador">16384</p>
+                        <p class="precio">1638400</p>
+                        <p class="contadorModificador">0</p>
+                    </div>
+                    <div class="mods">
+                        <p class="tipoModificador">65536</p>
+                        <p class="precio">6553600</p>
+                        <p class="contadorModificador">0</p>
+                    </div>
+                   <div class="mods">
+                        <p class="tipoModificador">262144</p>
+                        <p class="precio">26214400</p>
+                        <p class="contadorModificador">0</p>
+                    </div>
+
+                </section>
+
+                <!-- <section>
+                    <h4>Investigaciones</h4>
+
+                    <div class="invest">
+                        <p>1</p>
+                        <p class="contadorInvestigacion">0</p>
+                    </div>
+                    <div class="invest">
+                        <p>2</p>
+                        <p class="contadorInvestigacion">0</p>
+                    </div>
+                    <div class="invest">
+                        <p>3</p>
+                        <p class="contadorInvestigacion">0</p>
+                    </div>
+                    <div class="invest">
+                        <p>4</p>
+                        <p class="contadorInvestigacion">0</p>
+                    </div>
+                    <div class="invest">
+                        <p>5</p>
+                        <p class="contadorInvestigacion">0</p>
+                    </div>
+                    <div class="invest">
+                        <p>6</p>
+                        <p class="contadorInvestigacion">0</p>
+                    </div>
+                    <div class="invest">
+                        <p>7</p>
+                        <p class="contadorInvestigacion">0</p>
+                    </div>
+                    <div class="invest">
+                        <p>8</p>
+                        <p class="contadorInvestigacion">0</p>
+                    </div>
+                    <div class="invest">
+                        <p>9</p>
+                        <p class="contadorInvestigacion">0</p>
+                    </div>
+                   <div class="invest">
+                        <p>10</p>
+                        <p class="contadorInvestigacion">0</p>
+                    </div>
+                </section> -->
+
+             </section>
+
+             <!-- Seccion anuncios -->
+              <aside>
+                <h3>Zona de anuncios</h3>
+              </aside>
+        </section>
+
+    </main>
+
+
+    <footer>
+        
+    <?php
+        include ('rrss.php');
+    ?>
+    </footer>
+    <!-- Scripts -->
+     <script src="js/juego.js"></script>
+</body>
+</html>
