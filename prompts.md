@@ -20,6 +20,7 @@ a happy aloe plant icon or logo style
 
 a happy stevia plant icon or logo style
 
+coin with a plant logo
 
 ### VARIABLES
 
@@ -56,7 +57,6 @@ CantidadInvestigacion x10
 +1.000.000 monedas
 
 +10.000.000
-
 
 ### ORDEN MODIFICADORES
 

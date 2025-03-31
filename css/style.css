@@ -49,13 +49,29 @@ footer{
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
     min-height: 80vh;
+
+    background-image: url(../img/fondoCLIC.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#juego>section, #juego>aside{
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 /* Diseño zona de clicado */
 #clica{
-    background-color: aqua;
+    border: 5px solid white;
     width: 100%;
     min-height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#clica>figure{
+    width: 100%;
+    height: 100%;
 }
 
 /* Estilo secciones internas del juego */
@@ -101,7 +117,40 @@ footer{
     width: 100%;
 }
 
+#planta{
+    background-image: url('../img/planta01.png');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
+
+/* Clases ................................................. */
+
 /* Estilo de las cajas de los modificadores */
+.ascension{
+    animation: clicado 1s ease;  
+}
+
+@keyframes clicado {
+    0%{
+        transform: scale(0);
+    }
+    25%{
+        transform: scale(1.5);
+    }
+    100%{
+        transform: scale(0);
+    }
+}
+
+.coin{
+    width: 25px;
+    height: 25px;
+    /* background-image: url(../img/coin.png); */
+}
+
 .mods{
     width: 100%;
     height: 100px;
@@ -109,21 +158,53 @@ footer{
     border: 2px solid black;
     color: white;
     padding: 0.5rem 1rem;
+    gap: 0.5rem;
 
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.impagable{
+    border: 2px solid yellow;
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    padding: 0.5rem;
 }
 
 .invest{
-    padding: 1rem;
-    
+    padding: 0.5rem;
+    background-color: blue;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+
+    opacity: 0;
+    width: 0%;
+
+    display: none;
+}
+
+.invest h3{
+    width: 100%;
+}
+
+.precio, .precioInvest{
+    font-weight: bold;
+    color: yellow;
+}
+
+.modificadores{
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
 }
-/* Clases ................................................. */
 
 .tipoModificador{
     display: none;
@@ -133,7 +214,11 @@ footer{
     font-size: 4rem;
 }
 
-.invest{
-    background-color: blue;
-    width: 50%;
+.simbolo{
+    position: absolute;
+    font-size: 2rem;
+    color: gold;
+    pointer-events: none; /* Esto asegura que el símbolo no interfiera con otros eventos del mouse */
+    
+    display: block;
 }
