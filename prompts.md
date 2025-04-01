@@ -22,6 +22,9 @@ a happy stevia plant icon or logo style
 
 coin with a plant logo
 
+a meadow in the backyard
+
+
 ### VARIABLES
 
 NO_VARIABLE = NOMBRE MODIFICADOR

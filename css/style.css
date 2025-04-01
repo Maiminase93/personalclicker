@@ -126,10 +126,31 @@ footer{
     background-image: url('../img/planta01.png');
     background-position: bottom;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 100%;
+
+    transform-origin: 50% 65%;
+
+    transition: all .2s ease;
+    animation: brizna 2s infinite;
 }
 
-
+@keyframes brizna {
+    0%{
+        transform: rotate3d(0)
+    }
+    25%{
+        transform: rotate3d(1,1,1,0.025turn)
+    }
+    50%{
+        transform: rotate3d(1,1,1, -0.025turn)
+    }
+    75%{
+        transform: rotate3d(1, 0.025turn);
+    }
+    100%{
+        transform: rotate3d(0)
+    }
+}
 
 /* Clases ................................................. */
 
@@ -153,7 +174,15 @@ footer{
 .coin{
     width: 25px;
     height: 25px;
+    z-index: 1;
     /* background-image: url(../img/coin.png); */
+}
+
+.coinleaves{
+    width: 25px;
+    height: 25px;
+    
+    
 }
 
 .mods{

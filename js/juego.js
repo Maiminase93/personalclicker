@@ -9,6 +9,7 @@ window.addEventListener('load', ()=>{
     let cantidadMonedas = document.getElementById('cantidad');
     let cantidadPorSegundo = document.getElementById('cantPerSec');
     let zonaClic = document.getElementById('clica');
+    let plantita = document.querySelector('#planta');
     // let cantidadClic = document.querySelector('.simbolo');
 
 
@@ -45,8 +46,13 @@ window.addEventListener('load', ()=>{
                 // Actualizamos el apartado de monedas dentro del juego
                 cantidadMonedas.textContent = quant;
         
+        // Movimiento planta
+        plantita.style.backgroundSize = "110%";
+        setTimeout(() => {
+        plantita.style.backgroundSize = "100%";
+        }, 100);
 
-        // Generamos elemento al clic
+        // Generamos elemento al clic (monedas + cantidad)
         let clicker = document.createElement('div');
         clicker.innerHTML = `<img class="coin" src="img/coin.png"></img>${alClicar}`;
         clicker.classList.add('simbolo', 'ascension');
