@@ -18,7 +18,7 @@ window.addEventListener('load', ()=>{
 
 
     // Cantidades totales y por segundo
-    let quant = 11000;
+    let quant = 100000;
     let monedasPorSegundo = 0;
     let precio;
     let alClicar = 1;
@@ -91,14 +91,14 @@ window.addEventListener('load', ()=>{
             alClicar = alClicar * 3;
         }else{
 
-            // console.log(e.target);
-            faltaDinero(e, precio, quant);
+            // Llamada funcion de falta dinero
+            faltaDinero(e, precio, quant, divMejoraClic);
         }
     });
 
-    // Declaracion de funcion para llamar en caso de falta de dinero
 
-    function faltaDinero(e, price, dinero){
+    // Declaracion de funcion para llamar en caso de falta de dinero
+    function faltaDinero(e, price, dinero, lugar){
         let clicker = document.createElement('div');
         clicker.innerHTML = `<p>Te faltan ${price-dinero} Plantoros!</p>`;
         clicker.classList.add('impagable');
@@ -107,10 +107,10 @@ window.addEventListener('load', ()=>{
         clicker.style.left = `${e.pageX}px`;  // Suma un pequeño desplazamiento para que no se solape con el cursor
         clicker.style.top = `${e.pageY}px`;   // Suma un pequeño desplazamiento para que no se solape con el cursor
         
-        divMejoraClic.appendChild(clicker);
+        lugar.appendChild(clicker);
 
         setTimeout(() => {
-            divMejoraClic.removeChild(clicker);
+            lugar.removeChild(clicker);
         }, 1000);
     }
 
@@ -144,11 +144,16 @@ window.addEventListener('load', ()=>{
 
                 precioModifidacor[indice].textContent = precio; 
 
+                if(modQuant>=10){
+                    console.log('INVESTIGACION ABIERTA');
+                    divInvestigaciones[indice].classList.add('reach');
+
+                }
                 // En caso contrario falta dinero, no podemos comprar
             }else{
-                faltaDinero(e, precio, quant);
+                faltaDinero(e, precio, quant, divMod);
 
-            }
+            }    
 
         });
     });
@@ -157,21 +162,26 @@ window.addEventListener('load', ()=>{
 
     divInvestigaciones.forEach((investigacion, indice) =>{
         investigacion.addEventListener('click', ()=>{
-            let aux;
+            
+            // Variable auxiliar
+            let aux = parseInt(precioAInvestigar[indice].textContent);
+            // if(quant>= )
 
-            if(quant>= parseInt(precioAInvestigar[indice].textContent)){
+            if(quant>= aux){
 
-                quant -= parseInt(precioAInvestigar[indice].textContent);
+                quant -= aux;
 
-                aux = parseInt(precioAInvestigar[indice].textContent);
+                // Precio de la nueva investigacion
+                aux = aux*2;
 
-                aux = aux*1.5;
                 precioAInvestigar[indice].textContent = aux;
                 
                 aux = parseInt(cantidadInvestigaciones[indice].textContent)+1;
                 cantidadInvestigaciones[indice].textContent = aux;
                 aux = generacionModificador[indice].textContent;
                 generacionModificador[indice].textContent = parseInt(aux*2);
+
+                investigacion.classList.remove('reach');
             };
         });
     });
