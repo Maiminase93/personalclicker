@@ -5,27 +5,34 @@ window.addEventListener('load', ()=>{
     // Titulo web
     let tituloWeb = document.querySelector('title');
 
+
+
+    // Cantidades totales y por segundo
+    let quant = 0;
+    let monedasPorSegundo = 0;
+    let precio;
+    let alClicar = 1;
+
+
+
     // Zona izquierda, Primer tercio
     let cantidadMonedas = document.getElementById('cantidad');
     let cantidadPorSegundo = document.getElementById('cantPerSec');
     let zonaClic = document.getElementById('clica');
     let plantita = document.querySelector('#planta');
-    // let cantidadClic = document.querySelector('.simbolo');
 
 
     let divMejoraClic = document.querySelector('#clicMod');
     let precioMejoraClic = document.querySelector('#clicMod>p');
     let cantidadMejoraClic = document.querySelector('#clicMod>p:nth-of-type(2)');
 
+    let vPlantaImagenes = ["url(img/planta01.png)", "url(img/planta02.png)", "url(img/planta03.png)", "url(img/planta04.png)", "url(img/planta05.png)"];
 
-    // Cantidades totales y por segundo
-    let quant = 100000;
-    let monedasPorSegundo = 0;
-    let precio;
-    let alClicar = 1;
+
 
     // Zona central, segundo tercio
     // Modificador
+    let divModInv = document.querySelectorAll('.mods');
     let divModificadores = document.querySelectorAll('.modificadores');
     let generacionModificador = document.querySelectorAll('.tipoModificador');
     let precioModifidacor = document.querySelectorAll('.precio');
@@ -37,19 +44,24 @@ window.addEventListener('load', ()=>{
     let cantidadInvestigaciones = document.querySelectorAll('.contadorInvestigacion');
     // Si clicamos en la zona de clic
         
+    let vImagenes = ["url(img/lechuga.png)", "url(img/cebolla.png)", "url(img/tomate.png)", "url(img/espinaca.png)", "url(img/coliflor1.png)", "url(img/calabacin.png)", "url(img/oliva.png)" , "url(img/soja.png)", "url(img/girasol.png)", "url(img/aguacate.png)", "url(img/aloe.png)"];
+
+
     zonaClic.addEventListener('click', function(event) {
 
-                // Sumamos a nuestra cantidad de dinero la del clic
-                quant += alClicar;
-                // Actualizamos por clic el title de la web para que siempre se puedan ver la cantidad de dinero
-                tituloWeb.textContent = `Agri-Reborn ${quant}`;
-                // Actualizamos el apartado de monedas dentro del juego
-                cantidadMonedas.textContent = quant;
+        // Sumamos a nuestra cantidad de dinero la del clic
+        quant += alClicar;
+        // Actualizamos por clic el title de la web para que siempre se puedan ver la cantidad de dinero
+        tituloWeb.textContent = `Agri-Reborn ${quant}`;
+        // Actualizamos el apartado de monedas dentro del juego
+        cantidadMonedas.textContent = quant;
         
+
+        // =====================================================================
         // Movimiento planta
-        plantita.style.backgroundSize = "110%";
+        plantita.style.backgroundSize = "40%";
         setTimeout(() => {
-        plantita.style.backgroundSize = "100%";
+        plantita.style.backgroundSize = "30%";
         }, 100);
 
         // Generamos elemento al clic (monedas + cantidad)
@@ -68,6 +80,7 @@ window.addEventListener('load', ()=>{
         
         // Lo añadimos a la area
         zonaClic.appendChild(clicker);
+        // ====================================================================
 
     });
 
@@ -88,6 +101,16 @@ window.addEventListener('load', ()=>{
             // Le sumamos 1 a la cantidad de modificadores
             modQuant = parseFloat(cantidadMejoraClic.textContent) + 1;
             cantidadMejoraClic.textContent = modQuant;
+
+            // Cambiar imagen segun cantidad de modificadores
+            if(modQuant<6){
+                plantita.style.backgroundImage = vPlantaImagenes[modQuant];
+            }else if(modQuant == 6){
+                document.querySelector('#juego section').style.backgroundColor = "#33333350";
+                document.querySelector('#juego section:nth-of-type(2)').style.backgroundColor = "#33333350";
+                document.querySelector('#juego aside').style.backgroundColor = "#33333350";
+                
+            }
 
             // Aumentamos el precio por 10
             precio = precio * 10;
@@ -120,10 +143,15 @@ window.addEventListener('load', ()=>{
         }, 1000);
     }
 
+    //Atributo background image
+    divModInv.forEach((divMI, indice) =>{
+        divMI.style.backgroundImage = vImagenes[indice];
+        console.log(divMI);
+        console.log(vImagenes[indice]);
+    });
+
     // Compra de modificadores
-
     divModificadores.forEach((divMod, indice) =>{
-
         divMod.addEventListener('click', (e)=>{
             
             let modQuant = parseFloat(cantidadCompradaModificador[indice].textContent);
@@ -167,27 +195,29 @@ window.addEventListener('load', ()=>{
     // Funcion investigaciones mejora Modificadores
 
     divInvestigaciones.forEach((investigacion, indice) =>{
-        investigacion.addEventListener('click', ()=>{
+        investigacion.addEventListener('click', (e)=>{
             
-            // Variable auxiliar
-            let aux = parseInt(precioAInvestigar[indice].textContent);
-            // if(quant>= )
+            precio = parseInt(precioAInvestigar[indice].textContent);
 
-            if(quant>= aux){
+            if(quant>= precio){
 
-                quant -= aux;
+                quant -= precio;
 
                 // Precio de la nueva investigacion
-                aux = aux*2;
+                precio = precio*2;
 
-                precioAInvestigar[indice].textContent = aux;
+                precioAInvestigar[indice].textContent = precio;
                 
-                aux = parseInt(cantidadInvestigaciones[indice].textContent)+1;
+                // Variable auxiliar
+                let aux = parseInt(cantidadInvestigaciones[indice].textContent)+1;
+                
                 cantidadInvestigaciones[indice].textContent = aux;
                 aux = generacionModificador[indice].textContent;
                 generacionModificador[indice].textContent = parseInt(aux*2);
 
                 investigacion.classList.remove('reach');
+            }else{
+                faltaDinero(e,precio,quant, investigacion);
             };
         });
     });
@@ -206,14 +236,28 @@ window.addEventListener('load', ()=>{
         cantidadPorSegundo.textContent = monedasPorSegundo*10;
         quant += parseInt(monedasPorSegundo);
         cantidadMonedas.textContent = quant;
-        tituloWeb.textContent = `Agri-Reborn ${quant}`;
-
+        tituloWeb.textContent = `${quant} PlantWorld`;
+        mostrarNuevo();
     }
 
+    function mostrarNuevo(){
+        divModInv.forEach((divMI, indice) =>{
+            // Recogemos el precio de cada modificador
+            if(cantidadCompradaModificador[indice].textContent == '0'){
+                precio = precioModifidacor[indice].textContent;
+                if(quant>precio && divMI.style.opacity == 0){
+                    divMI.style.opacity = "1";
+                    divMI.style.width = "100%";
+                    divMI.style.height = "100px";
+                    console.log('Mostrar: ', divMI);
+                }
+            }
+        });
+    };
 
-    // Llamada por segundo de la funcion
+
+
+    // Llamada de la funcion
     setInterval(cuentaViejas, 100);
-    // setInterval(mostracion, 1000);
-
 });
 

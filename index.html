@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agri-Reborn</title>
+    <title>PlantWorld</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="img/favicon.png" type="image/png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <figure>
-            <img src="https://lorem.cat/100x100" />
+            <img src="https://lorem.cat/100x100"/>
         </figure>
 
-        <h1>Agri-Reborn</h1>
+        <h1>🌱PlantWorld</h1>
 
         <?php
             include ('rrss.php');
@@ -20,8 +26,8 @@
         
     </header>
     
-    <main>
-        <section id="juego">
+    <main id="juego">
+        
             <h2 style="display: none;">Panel del juego</h2>
 
             <!-- Sección 1 Clicar -->
@@ -49,13 +55,15 @@
 
             <!-- Seccion 2 -->
              <section>
-                <h3>Apartado de modificadores e investigaciones</h3>
+                <h3>Cultivos e investigaciones</h3>
 
                 <section>
-                    <h4>Modificadores</h4>
+                    <h4 style="display: none;">Modificadores</h4>
                     
                     <div class="mods">
                         
+                        <h2></h2>
+
                         <div class="invest">
                             <h3>Investigar</h3>
                             <p class="precioInvest">10000</p>
@@ -231,7 +239,7 @@
               <aside>
                 <h3>Zona de anuncios</h3>
               </aside>
-        </section>
+        
 
     </main>
 
