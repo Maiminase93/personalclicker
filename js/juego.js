@@ -1,12 +1,48 @@
 window.addEventListener('load', ()=>{
 
+        // =================================================================================================================
+        // FUNCION CONEXION API ====================================================================================
+        let mostrarGiphy = document.querySelector('#gif');
+
+        const API_KEY = 'LAr7dQkmkuz0us0JdiTYwljfrTEDzNUN';
+        // ARRAY con los ID gifs [lechuga, cebolla, tomate, espinaca, coliflor, calabacin, olivas, soja, girasol, aguacate]
+        const query = ['hPcRM5Hr5F1xm', 'zRlOz8XKLe7qo', 'WW9DU2lEykWXe', '56jPgVn17BDiAq1UrS', '2js6hegB3hwtXAlkOJ', '89sIi77nGsdnq', 'YPsnKQK6cvcB2G7iLs', 'kf4SXNzSfiAiQ',  'efrkrsYaJw0nJB6HBV','h7uPUKaftYTKd1AiBB']; // Lo que quieras buscar, ej: 'plant celebration'
+        // const URL = `https://api.giphy.com/v1/gifs/${query[indice]}?api_key=${API_KEY}&rating=g`;
+
+
+        const fraseQuery = ['Todo el mundo adora la lechuga, verdad?!😥', 'Llorar es bueno y más con cebolla!', 'El tomate se usa como arma arrojadiza, hay quien se la come, degenerados!', 'Con las espinacas no te faltará fuerza!', 'Mmm coliflor con bacon...', 'El calabacin tiene muchas funciones una de ellas es comerselo, la menos atractiva 😉', 'Con esto haremos dinero! Quien no usa aceite?!', 'Marchando proteinas!Tenemos soja!', 'El girasol nos dice que es verano! Y es un producto adictivo para los jóvenes!', 'El aguacate tiene las mejores grasas saludables! Engordara nuestra billetera!🤑']
+
+        async function obtenerGif(indice) {
+        const URL = `https://api.giphy.com/v1/gifs/${query[indice]}?api_key=${API_KEY}&rating=g`;
+            
+        try {
+            const response = await fetch(URL);
+            const dato = await response.json();
+            const gifURL = dato.data.images.original.url;
+            // console.log(data);
+
+            mostrarGiphy.innerHTML = `
+            <h3>${fraseQuery[indice]}</h3>
+
+            <figure>
+                <img src="${gifURL}" alt="Celebration gif">
+            </figure>
+            `;
+        } catch (error) {
+            console.error('Error al obtener el gif:', error);
+        }
+        }
+        // API==============================================================================================================
+        // =================================================================================================================
+
+
     // Declaracion de variables
 
     // Titulo web
     let LocTituloWeb = document.querySelector('title');
 
     // Modificadores manuales del precio
-    invDeClic = 5; // ++ Multiplicador de valor alClicar ++ //
+    invDeClic = 100; // ++ Multiplicador de valor alClicar ++ //
     invDeMod = 3; // ++ Multiplicador de valor del cultivo ++ //
     aumentoPrecioMOD = 25; // ++ Valor numerico de porcentaje % ++ //
     aumentoPrecioINV = 2; // ++ Valor numerico multiplicador ++ //
@@ -278,6 +314,14 @@ window.addEventListener('load', ()=>{
 
                 modCantidad[indice]++;
                 LocCantidadCompradaModificador[indice].textContent = modCantidad[indice];
+
+                if(modCantidad[indice] == 1){
+                    obtenerGif(indice);
+                    mostrarGiphy.style.display = 'flex';
+                    setTimeout(() => {
+                        mostrarGiphy.style.display = 'none';
+                    }, 5000);
+                }
 
                 // El precio se aumenta un X% quitaremos decimales
                 modPrecio[indice] += Math.floor(modPrecio[indice]*aumentoPrecioMOD/100);

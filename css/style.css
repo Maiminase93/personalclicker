@@ -94,6 +94,7 @@ h2{
     grid-template-rows: repeat(3, auto);
     width: 100%;
     height: 1fr;
+    position: relative;
 
     background-image: url(../img/paisaje01.jpg);
     background-size: cover;
@@ -175,11 +176,59 @@ h2{
     width: 100%;
 }
 
+#gif{
+    display: none;
+    width: 100%;
+    height: 70vh;
+    background-color: var(--colorImpagable);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    align-self: center;
+}
+
+#gif>figure{
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--colorImpagable);
+
+}
+
+#gif>figure>img{
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+}
+
+/* #gif>figure>figcaption{
+    text-align: center;
+    font-weight: bolder;
+    font-size: 1.5rem;
+    width: 80%;
+    height: 2rem;
+
+} */
+
+
 #planta{
     background-image: url('../img/planta01.png');
     background-position: bottom;
     background-repeat: no-repeat;
     background-size: 50%;
+
+    justify-self: flex-start;
+    align-self: flex-start;
 
     transform-origin: 50% 65%;
 
@@ -198,7 +247,7 @@ h2{
     padding: 0.25rem;
     margin: 0.5rem;
     
-    width: 90%;
+    width: 100%;
     height: 90%;
 
     background-color: var(--color3-trans);
@@ -217,6 +266,21 @@ h2{
 #rrss:hover{
     border: 2px solid var(--color3);
     background-color: var(--color3-trans);
+}
+
+#portfolio{
+    background-image: url(../img/portfolio.png);
+    background-size: cover;
+
+}
+
+#portfolio:hover{
+    transition: all 0.5s ease;
+    background-image: url(../img/portfolio2.png);
+    background-color: var(--colorImpagable);
+    border-radius: 50%;
+    border: 5px solid var(--colorImpagable);
+
 }
 
 #github{
@@ -259,7 +323,7 @@ h2{
     border: 5px solid var(--colorImpagable);
 }
 
-#github:hover, #codepen:hover, #linkedin:hover{
+#portfolio:hover, #github:hover, #codepen:hover, #linkedin:hover{
     animation-name: roller;
     animation-duration: 1s;
     
@@ -457,7 +521,7 @@ h2{
 @media only screen and (min-width: 1024px) {
     body{
         display: grid;
-        grid-template-rows: 100px 1fr 5vh;
+        grid-template-rows: 100px 1fr;
     }
 
     #juego{
@@ -476,8 +540,8 @@ h2{
     }
 
     #rrss{
-        width: 50%;
-        height: 80%;
+        width: 60%;
+        height: 70%;
         justify-self: flex-end;
         display: flex;
         justify-content: space-around;
@@ -498,7 +562,7 @@ h2{
     }
 
     #rrss a{
-        width: 75px;
-        height: 75px;
+        width: 60px;
+        height: 60px;
     }
 }
