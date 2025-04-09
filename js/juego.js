@@ -42,7 +42,7 @@ window.addEventListener('load', ()=>{
     let LocTituloWeb = document.querySelector('title');
 
     // Modificadores manuales del precio
-    invDeClic = 100; // ++ Multiplicador de valor alClicar ++ //
+    invDeClic = 5; // ++ Multiplicador de valor alClicar ++ //
     invDeMod = 3; // ++ Multiplicador de valor del cultivo ++ //
     aumentoPrecioMOD = 25; // ++ Valor numerico de porcentaje % ++ //
     aumentoPrecioINV = 2; // ++ Valor numerico multiplicador ++ //
